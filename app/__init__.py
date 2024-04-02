@@ -19,7 +19,7 @@ def index():
 
 @app.route('/feed', methods=["GET"])
 def get_all_tweets():
-  modify_tweets = sorted(tweets, key=lambda x: datetime.strptime(x["date"], "%m/%d/%y"))
+  modify_tweets = sorted(tweets, key=lambda x: datetime.strptime(x["date"], "%m/%d/%y"), reverse=True)
   # dateTimeObj = datetime.strptime(dateString, "%m/%d/%y")
   return render_template("feed.html", all_tweets=modify_tweets)
 
@@ -30,7 +30,7 @@ def new_tweet():
     params = {
       "id": len(tweets) + 1,
       "author": form.data["author"],
-      "date": str(datetime.now().date()),
+      "date": datetime.now().date().strftime("%m/%d/%y"),
       "tweet": form.data["tweet"],
       "likes": randint(50000, 700000)
     }
