@@ -1,9 +1,17 @@
 {% extends "base.html" %} {% block main %}
 <h1>Create a New Tweet!</h1>
+    {% if id %}
+    <form class="tweet" action="/feed/{{id}}/update" method="POST">
+    {% else %}
     <form class="tweet" action="/new" method="POST">
+    {% endif %}
         {{ form.hidden_tag() }}
         <p> {{ form.author.label }} {{ form.author }}</p>
-       <p> {{ form.tweet.label }} {{ form.tweet }}</p>
+        <p> {{ form.tweet.label }} {{ form.tweet }}</p>
+        {% if id %}
+        {{ form.update }}
+        {% else %}
         {{ form.submit }}
+        {% endif %}
     </form>
 {% endblock %}

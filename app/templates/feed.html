@@ -10,6 +10,8 @@
         {% else %}
         <p>Likes: {{ tweet.likes / 1000}}k</p>
         {% endif %}
+        <a href="/feed/{{tweet.id}}/update">Update</a>
+        <a href="/feed/{{tweet.id}}/delete">Delete</a>
     </div>
     {% endfor %}
 </div>
